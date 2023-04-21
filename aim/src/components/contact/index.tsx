@@ -1,8 +1,14 @@
 import { useReducer } from 'react';
 import PrefixDropdown from './PrefixDropdown/index.js';
 import CustomInput from './CustomInput/index.js';
-import { ContactBanner } from './styles.js';
-import CustomTextArea from './CustomTextArea/index.js';
+import {
+  ContactBanner,
+  ContactLayout,
+  ContactWrapper,
+  EmailAndContactWrapper,
+  PrefixAndNameWrapper,
+} from './styles.js';
+import { INPUT_TYPES } from '../../constants/input-types.js';
 
 interface ContactFormState {
   prefix: string | null;
@@ -41,82 +47,97 @@ const Contact = () => {
     description: null,
   });
 
-  console.log(state, 'state');
+  // console.log(state, 'state');
 
   return (
-    <>
+    <ContactWrapper>
       <ContactBanner>Let us hear from you</ContactBanner>
 
-      <PrefixDropdown
-        prefix={state.prefix}
-        handlePrefixChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-          dispatch({ type: 'handlePrefixChange', payload: event.target.value });
-        }}
-      />
+      <ContactLayout>
+        <PrefixAndNameWrapper>
+          <PrefixDropdown
+            prefix={state.prefix}
+            handlePrefixChange={(
+              event: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+              dispatch({
+                type: 'handlePrefixChange',
+                payload: event.target.value,
+              });
+            }}
+          />
 
-      <CustomInput
-        placeholder="Enter your full name"
-        inputValue={state.fullName}
-        handleInputValueChange={(
-          event: React.ChangeEvent<HTMLInputElement>
-        ) => {
-          dispatch({
-            type: 'handleFullNameChange',
-            payload: event.target.value,
-          });
-        }}
-      />
+          <CustomInput
+            type={INPUT_TYPES['TEXT']}
+            placeholder="Please provide us your full name"
+            inputValue={state.fullName}
+            handleInputValueChange={(
+              event: React.ChangeEvent<HTMLInputElement>
+            ) => {
+              dispatch({
+                type: 'handleFullNameChange',
+                payload: event.target.value,
+              });
+            }}
+          />
+        </PrefixAndNameWrapper>
+        <EmailAndContactWrapper>
+          <CustomInput
+            type={INPUT_TYPES['TEXT']}
+            placeholder="Please provide us your e-mail"
+            inputValue={state.email}
+            handleInputValueChange={(
+              event: React.ChangeEvent<HTMLInputElement>
+            ) => {
+              dispatch({
+                type: 'handleEmailChange',
+                payload: event.target.value,
+              });
+            }}
+          />
 
-      <CustomInput
-        placeholder="Enter your email"
-        inputValue={state.email}
-        handleInputValueChange={(
-          event: React.ChangeEvent<HTMLInputElement>
-        ) => {
-          dispatch({
-            type: 'handleEmailChange',
-            payload: event.target.value,
-          });
-        }}
-      />
-
-      <CustomInput
-        placeholder="Enter your Subject"
-        inputValue={state.subject}
-        handleInputValueChange={(
-          event: React.ChangeEvent<HTMLInputElement>
-        ) => {
-          dispatch({
-            type: 'handleSubjectChange',
-            payload: event.target.value,
-          });
-        }}
-      />
-
-      <CustomInput
-        placeholder="Enter your contact"
-        inputValue={state.contact}
-        handleInputValueChange={(
-          event: React.ChangeEvent<HTMLInputElement>
-        ) => {
-          dispatch({
-            type: 'handleContactChange',
-            payload: event.target.value,
-          });
-        }}
-      />
-
-      <CustomTextArea
-        placeholder="Enter Your description"
-        text={state.description}
-        handleTextChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-          dispatch({
-            type: 'handleDescriptionChange',
-            payload: event.target.value,
-          });
-        }}
-      />
-    </>
+          <CustomInput
+            type={INPUT_TYPES['TEXT']}
+            placeholder="Please provide us your contact number"
+            inputValue={state.contact}
+            handleInputValueChange={(
+              event: React.ChangeEvent<HTMLInputElement>
+            ) => {
+              dispatch({
+                type: 'handleContactChange',
+                payload: event.target.value,
+              });
+            }}
+          />
+        </EmailAndContactWrapper>
+        <CustomInput
+          type={INPUT_TYPES['TEXT']}
+          placeholder="Please let us know the purpose of contacting"
+          inputValue={state.subject}
+          handleInputValueChange={(
+            event: React.ChangeEvent<HTMLInputElement>
+          ) => {
+            dispatch({
+              type: 'handleSubjectChange',
+              payload: event.target.value,
+            });
+          }}
+        />
+        <CustomInput
+          type={INPUT_TYPES['TEXTAREA']}
+          placeholder="Please describe how can we assist you with our services"
+          inputValue={state.description}
+          handleTextAreaValueChange={(
+            event: React.ChangeEvent<HTMLTextAreaElement>
+          ) => {
+            dispatch({
+              type: 'handleDescriptionChange',
+              payload: event.target.value,
+            });
+          }}
+        />
+      </ContactLayout>
+    </ContactWrapper>
   );
 };
 
