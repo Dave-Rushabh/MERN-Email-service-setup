@@ -37,3 +37,25 @@ export const EmailAndContactWrapper = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+export const SubmitButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 0;
+
+  & > button {
+    border: 2px solid teal;
+    color: teal;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  & > button:hover {
+    background-color: teal;
+    color: #fff;
+    border: 2px solid teal;
+  }
+`;

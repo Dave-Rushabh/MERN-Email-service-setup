@@ -7,6 +7,7 @@ import {
   ContactWrapper,
   EmailAndContactWrapper,
   PrefixAndNameWrapper,
+  SubmitButtonWrapper,
 } from './styles.js';
 import { INPUT_TYPES } from '../../constants/input-types.js';
 
@@ -137,6 +138,9 @@ const Contact = () => {
           }}
         />
       </ContactLayout>
+      <SubmitButtonWrapper>
+        <button>Submit</button>
+      </SubmitButtonWrapper>
     </ContactWrapper>
   );
 };

@@ -13,11 +13,20 @@ const PrefixDropdown = ({
         id="prefix-select"
         value={prefix ?? ''}
         onChange={handlePrefixChange}
+        style={{ color: !prefix ? 'gray' : 'black' }}
       >
-        <option value="">Select a prefix</option>
-        <option value="Mr">Mr</option>
-        <option value="Mrs">Mrs</option>
-        <option value="Miss">Miss</option>
+        <option value="" disabled style={{ color: 'gray' }} hidden>
+          How should we address you ?
+        </option>
+        <option value="Mr." style={{ color: 'black' }}>
+          Mr
+        </option>
+        <option value="Mrs." style={{ color: 'black' }}>
+          Mrs
+        </option>
+        <option value="Miss" style={{ color: 'black' }}>
+          Miss
+        </option>
       </select>
     </>
   );
