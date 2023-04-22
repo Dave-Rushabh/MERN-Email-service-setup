@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75vw;
+  width: 50vw;
   border: 2px solid teal;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;

@@ -48,8 +48,6 @@ const Contact = () => {
     description: null,
   });
 
-  // console.log(state, 'state');
-
   return (
     <ContactWrapper>
       <ContactBanner>Let us hear from you</ContactBanner>
