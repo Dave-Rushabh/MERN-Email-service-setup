@@ -2,14 +2,14 @@ const expressAsyncHandler = require("express-async-handler");
 const { sendMail } = require("../utils/sendMail");
 
 const sendContactFormDataToEmail = expressAsyncHandler(async (req, res) => {
-  const { prefix, name, email, contact, subject, description } = req?.body;
+  const { prefix, fullName, email, contact, subject, description } = req?.body;
 
   const message = {
     subject,
     description,
     from: email,
     contact,
-    name: `${prefix} ${name}`,
+    name: `${prefix} ${fullName}`,
   };
 
   try {

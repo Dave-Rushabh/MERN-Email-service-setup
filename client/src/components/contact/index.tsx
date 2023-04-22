@@ -1,6 +1,8 @@
 import { useReducer } from 'react';
 import PrefixDropdown from './PrefixDropdown/index.js';
 import CustomInput from './CustomInput/index.js';
+import axios from 'axios';
+
 import {
   ContactBanner,
   ContactLayout,
@@ -47,6 +49,19 @@ const Contact = () => {
     contact: null,
     description: null,
   });
+
+  const handleSubmitForm = async () => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: 'http://localhost:5000/api/contact',
+        data: state,
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <ContactWrapper>
@@ -137,7 +152,7 @@ const Contact = () => {
         />
       </ContactLayout>
       <SubmitButtonWrapper>
-        <button>Submit</button>
+        <button onClick={handleSubmitForm}>Submit</button>
       </SubmitButtonWrapper>
     </ContactWrapper>
   );
